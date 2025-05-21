@@ -15,6 +15,7 @@ public class Dog extends Actor
      */
     public Dog()
     {
+        //animates dog using array and for loop
         for (int i = 0; i < 11 ; i ++)
         {
             idle[i] = new GreenfootImage("images/dog-idle/idle" + i + ".png"); 

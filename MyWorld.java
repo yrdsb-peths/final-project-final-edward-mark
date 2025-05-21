@@ -44,4 +44,8 @@ public class MyWorld extends World {
     {
         fallingCat = null;
     }
+    
+    public Cat getFallingCat() {
+    return fallingCat;
+    }   
 }
