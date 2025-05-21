@@ -8,9 +8,9 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     public MyWorld() {
-        super(600, 400, 1);
+        super(500, 600, 1);
         
-        Hero hero = new Hero();
-        addObject(hero, 300, 200);
+        Cat cat = new Cat();
+        addObject(cat, 250, 25);
     }
 }
