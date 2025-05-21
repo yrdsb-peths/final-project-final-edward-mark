@@ -11,6 +11,8 @@ public class Cat extends Actor
     SimpleTimer animationTimer = new SimpleTimer();
     private GreenfootImage[] idle = new GreenfootImage[18];
     int imageIndex = 0;
+    private boolean hasLanded = false;
+    
     
      //Constructor for cat
     public Cat()
@@ -27,50 +29,46 @@ public class Cat extends Actor
     
     public void act() {
         animateCat();
-        moveCat();
+        if (!hasLanded)
+        {
+            moveCat();
+            checkIfLanded();
+        }
     } 
 
     //animates the Cat
     public void animateCat() 
-    {
+    {   
         if (animationTimer.millisElapsed() > 150) 
         {
             setImage(idle[imageIndex]);
             imageIndex = (imageIndex + 1) % idle.length;
             animationTimer.mark();
         }
-    }
+        }
     
-    public void moveCat() {
+    public void moveCat() 
+    {
         // Cat falls
         int speed = 4;  
         setLocation(getX(), getY() + speed); 
-
-        // Get the width and height of the cat
-        int width = getImage().getWidth();
+    }
+    
+    //this method checks if the current cat has landed before 
+    //spawning the new Cat
+    private void checkIfLanded()
+    {
         int height = getImage().getHeight();
-
-        // Check Y boundaries (top and bottom)
-        if (getY() > getWorld().getHeight() - height / 2) 
+        int bottomY = getWorld().getHeight() - height/2;
+        if (getY()>= bottomY)
         {
-            setLocation(getX(), getWorld().getHeight() - height / 2); 
-        }
-
-        if (getY() < height / 2) 
-        {
-            //GAME OVER
-            setLocation(getX(), height / 2);
-        }
-
-        // Check X boundaries (left and right)
-        if (getX() > getWorld().getWidth() - width / 2) 
-        {
-            setLocation(getWorld().getWidth() - width / 2, getY());
-        }
-
-        if (getX() < width / 2) 
-        {
-            setLocation(width / 2, getY()); 
+            setLocation (getX(), bottomY);
+            hasLanded = true;
+            
+            MyWorld world = (MyWorld) getWorld();
+            world.clearFallingCat();
+            world.createCat();
         }
     }
 }
+
