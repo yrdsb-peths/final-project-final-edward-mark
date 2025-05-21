@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cat extends Actor
 {
+    private int speed = 4;
     SimpleTimer animationTimer = new SimpleTimer();
     private GreenfootImage[] idle = new GreenfootImage[18];
     int imageIndex = 0;
@@ -60,7 +61,16 @@ public class Cat extends Actor
     {
         int height = getImage().getHeight();
         int bottomY = getWorld().getHeight() - height/2;
-        if (getY()>= bottomY)
+        
+        if (isTouching (Cat.class) && getY() < bottomY)
+        {
+            setLocation (getX(), getY() - speed);
+            hasLanded = true;
+            MyWorld world = (MyWorld) getWorld();
+            world.clearFallingCat();
+            world.createCat();
+        }
+        else if (getY()>= bottomY)
         {
             setLocation (getX(), bottomY);
             hasLanded = true;
