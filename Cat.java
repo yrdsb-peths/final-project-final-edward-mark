@@ -48,7 +48,7 @@ public class Cat extends Actor
             imageIndex = (imageIndex + 1) % idle.length;
             animationTimer.mark();
         }
-        }
+    }
     
     public void moveCat() 
     {
@@ -74,15 +74,25 @@ public class Cat extends Actor
 
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
     
-        if (isTouching(Cat.class)) {
-            setLocation(getX(), getY() - speed); // tiny bounce
-            hasLanded = true;
-        } 
-        else if (getY() >= bottomY) {
-            hasLanded = true;
-        }
+        // Merge if touching another Cat
+        Cat otherCat = (Cat) getOneIntersectingObject(Cat.class);
+        if (otherCat != null && otherCat != this && !otherCat.hasLanded) {
+            // Create Dog at average position
+            int newX = (getX() + otherCat.getX()) / 2;
+            int newY = (getY() + otherCat.getY()) / 2;
     
-        if (hasLanded) {
+            MyWorld world = (MyWorld) getWorld();
+            world.addObject(new Dog(), newX, newY);
+    
+            world.removeObject(otherCat);
+            world.removeObject(this);
+            return;
+        }
+
+        //Stop if it lands on ground
+        if (getY() + getImage().getHeight() / 2 >= getWorld().getHeight()) {
+            setLocation(getX(), bottomY);
+            hasLanded = true;
             MyWorld world = (MyWorld) getWorld();
             world.clearFallingCat();
             world.createCat();
