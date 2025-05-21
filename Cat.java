@@ -13,6 +13,7 @@ public class Cat extends Actor
     private GreenfootImage[] idle = new GreenfootImage[18];
     int imageIndex = 0;
     private boolean hasLanded = false;
+    private boolean falling = false;
     
     
      //Constructor for cat
@@ -30,8 +31,9 @@ public class Cat extends Actor
     
     public void act() {
         animateCat();
-        if (!hasLanded)
-        {
+        if (!falling) {
+            handleUserInput(); // move side to side or start fall
+        } else {
             moveCat();
             checkIfLanded();
         }
@@ -52,32 +54,57 @@ public class Cat extends Actor
     {
         // Cat falls
         int speed = 4;  
-        setLocation(getX(), getY() + speed); 
+        int newY = getY() + speed;
+        int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
+            
+        setLocation(getX(), getY() + speed); //cat falls
+        //ensures cat doesn't fall off the screen
+        if (newY >= bottomY) {
+            setLocation(getX(), bottomY);
+        } else {
+            setLocation(getX(), newY); 
+        }
     }
     
     //this method checks if the current cat has landed before 
     //spawning the new Cat
     private void checkIfLanded()
     {
-        int height = getImage().getHeight();
-        int bottomY = getWorld().getHeight() - height/2;
-        
-        if (isTouching (Cat.class) && getY() < bottomY)
-        {
-            setLocation (getX(), getY() - speed);
+        if (hasLanded) return;
+
+        int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
+    
+        if (isTouching(Cat.class)) {
+            setLocation(getX(), getY() - speed); // tiny bounce
             hasLanded = true;
+        } 
+        else if (getY() >= bottomY) {
+            hasLanded = true;
+        }
+    
+        if (hasLanded) {
             MyWorld world = (MyWorld) getWorld();
             world.clearFallingCat();
             world.createCat();
         }
-        else if (getY()>= bottomY)
-        {
-            setLocation (getX(), bottomY);
-            hasLanded = true;
-            
-            MyWorld world = (MyWorld) getWorld();
-            world.clearFallingCat();
-            world.createCat();
+    }
+
+    
+    public void handleUserInput()
+    {
+        int halfWidth = getImage().getWidth() / 2;
+        int worldWidth = getWorld().getWidth();
+    
+        if (Greenfoot.isKeyDown("left") && getX() - halfWidth > 0) {
+            setLocation(getX() - 3, getY()); // move left
+        }
+    
+        if (Greenfoot.isKeyDown("right") && getX() + halfWidth < worldWidth) {
+            setLocation(getX() + 3, getY()); // move right
+        }
+    
+        if (Greenfoot.isKeyDown("space")) {
+            falling = true; // start falling
         }
     }
 }
