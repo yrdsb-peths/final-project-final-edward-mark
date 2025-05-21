@@ -121,11 +121,21 @@ public class Cat extends Actor
         Cat other = (Cat) getOneIntersectingObject(Cat.class);
         if (other != null && other != this) {
             MyWorld world = (MyWorld) getWorld();
-    
             int newX = (getX() + other.getX()) / 2;
             int newY = (getY() + other.getY()) / 2;
-    
-            world.addObject(new Dog(), newX, newY);
+            
+            // Create the dog first to get its height
+            Dog dog = new Dog();
+            int dogHeight = dog.getImage().getHeight();
+            int worldHeight = world.getHeight();
+            int bottomY = worldHeight - dogHeight / 2;
+            
+            // Snap to bottom if very close
+            if (newY + dogHeight / 2 >= worldHeight - 5) {
+                newY = bottomY;
+            }
+
+            world.addObject(dog, newX, newY);
     
             // Remove both cats
             world.removeObject(other);
