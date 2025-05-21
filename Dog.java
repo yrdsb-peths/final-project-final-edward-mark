@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The dog is the second level of animals
+ * The dog is the second level of all the animals
  * Created by merging two cats
  * @author (Mark Ku, Edward Wang)
  * @version (May 21, 2025)

@@ -8,10 +8,23 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     private Cat fallingCat;
+    private boolean merging = false;
     
     public MyWorld() {
         super(500, 600, 1);
         createCat();
+    }
+    
+    public boolean isMerging() {
+        return merging;
+    }
+
+    public void setMerging(boolean m) {
+        merging = m;
+    }
+    
+    public void act() {
+        merging = false; // Reset merging flag every frame
     }
     
     public void createCat()
