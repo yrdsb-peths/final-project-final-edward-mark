@@ -1,0 +1,47 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Wolf here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Wolf extends Actor
+{
+    SimpleTimer animationTimer = new SimpleTimer();
+    GreenfootImage[] idle = new GreenfootImage[12];
+    /**
+     * Constructor
+     */
+    public Wolf()
+    {
+        //animates wolf using array and for loop
+        for (int i = 0; i < idle.length ; i ++)
+        {
+            idle[i] = new GreenfootImage("images/wolf-idle/wolf" + i + ".png"); 
+            idle[i].scale(150,120);
+        }
+        setImage(idle[0]);
+        animationTimer.mark();
+    }
+    
+    /**
+     * Animates the wolf
+     */
+    int imageIndex = 0;
+    public void animateWolf()
+    {
+        if (animationTimer.millisElapsed() > 200) 
+        {
+            setImage(idle[imageIndex]);
+            imageIndex = (imageIndex + 1) % idle.length;
+            animationTimer.mark();
+        }
+    }
+    
+    public void act()
+    {
+        //Animates the wolf
+        animateWolf();
+    }
+}

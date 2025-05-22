@@ -10,6 +10,8 @@ public class Dog extends Actor
 {
     SimpleTimer animationTimer = new SimpleTimer();
     GreenfootImage[] idle = new GreenfootImage[11];
+    private boolean hasMerged = false;
+    
     /**
      * Constructor
      */
@@ -43,5 +45,27 @@ public class Dog extends Actor
     {
         //Animates the dog
         animateDog();
+        checkMerge();
+    }
+    
+    //Check if dog is touching other dog, if yes, merges into wolf
+    public void checkMerge()
+    {
+        if (!hasMerged)
+        {
+            Dog other = (Dog) getOneIntersectingObject (Dog.class);
+            if (other!= null && other != this)
+            {
+                hasMerged = true;
+                other.setMerged();
+                getWorld().addObject (new Wolf(), getX(), getY());
+                getWorld().removeObject (other);
+                getWorld().removeObject (this);
+            }
+        }
+    }
+    public void setMerged()
+    {
+        hasMerged = true;
     }
 }
