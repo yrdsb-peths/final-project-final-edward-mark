@@ -6,13 +6,16 @@ import greenfoot.*;
  * @version May 2025
  */
 
-public class MyWorld extends World {
+public class MyWorld extends World 
+{
     private Cat fallingCat;
     private boolean merging = false;
     
-    public MyWorld() {
+    public MyWorld() 
+    {
         super(500, 600, 1);
         createCat();
+        setBackground("images/background.jpg");
     }
     
     public boolean isMerging() {
@@ -45,7 +48,8 @@ public class MyWorld extends World {
         fallingCat = null;
     }
     
-    public Cat getFallingCat() {
-    return fallingCat;
+    public Cat getFallingCat() 
+    {
+        return fallingCat;
     }   
 }
