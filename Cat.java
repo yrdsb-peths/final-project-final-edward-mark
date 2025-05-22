@@ -58,7 +58,7 @@ public class Cat extends Actor
     public void moveCat() 
     {
         // Cat falls
-        int speed = 4;  
+        int speed = 6;  
         int newY = getY() + speed;
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
             
@@ -79,7 +79,7 @@ public class Cat extends Actor
     
         checkMerge(); // attempt merge first
     
-        if (getWorld() == null) return; // ✅ make sure we’re still in the world
+        if (getWorld() == null) return; // ensures the world is still there
     
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
     
@@ -94,20 +94,24 @@ public class Cat extends Actor
     }
 
     
+    //Allows user to control the top cat
     public void handleUserInput()
     {
         MyWorld world = (MyWorld) getWorld();
-        if (world == null || world.getFallingCat() != this) return;
-    
+        if (world == null || world.getFallingCat() != this){ 
+        return;
+        }       
+        
+        //Ensures cat won't go off screen
         int halfWidth = getImage().getWidth() / 2;
         int worldWidth = getWorld().getWidth();
     
         if (Greenfoot.isKeyDown("left") && getX() - halfWidth > 0) {
-            setLocation(getX() - 3, getY()); // move left
+            setLocation(getX() - 3, getY()); // moves cat left
         }
     
         if (Greenfoot.isKeyDown("right") && getX() + halfWidth < worldWidth) {
-            setLocation(getX() + 3, getY()); // move right
+            setLocation(getX() + 3, getY()); // moves cat right
         }
     
         if (Greenfoot.isKeyDown("space")) {
@@ -115,6 +119,8 @@ public class Cat extends Actor
         }
     }
     
+    
+    //Checks if two cats have merged
     private boolean checkMerge() {
         if (getWorld() == null) return false;
     
@@ -141,7 +147,7 @@ public class Cat extends Actor
             world.removeObject(other);
             world.removeObject(this);
     
-            // ✅ Only allow the world to spawn a new cat if this was the falling one
+            //Allows the world to spawn a new cat if this was the falling one
             if (world.getFallingCat() == this || world.getFallingCat() == other) {
                 world.clearFallingCat();
                 world.createCat();
