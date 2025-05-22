@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Wolf extends Actor
 {
     SimpleTimer animationTimer = new SimpleTimer();
-    GreenfootImage[] idle = new GreenfootImage[12];
+    GreenfootImage[] idle = new GreenfootImage[2];
     /**
      * Constructor
      */
@@ -18,7 +18,7 @@ public class Wolf extends Actor
         //animates wolf using array and for loop
         for (int i = 0; i < idle.length ; i ++)
         {
-            idle[i] = new GreenfootImage("images/wolf-idle/wolf" + i + ".png"); 
+            idle[i] = new GreenfootImage("images/wolf-idle/wolfidle" + i + ".png"); 
             idle[i].scale(150,120);
         }
         setImage(idle[0]);
@@ -31,7 +31,7 @@ public class Wolf extends Actor
     int imageIndex = 0;
     public void animateWolf()
     {
-        if (animationTimer.millisElapsed() > 200) 
+        if (animationTimer.millisElapsed() > 250) 
         {
             setImage(idle[imageIndex]);
             imageIndex = (imageIndex + 1) % idle.length;
