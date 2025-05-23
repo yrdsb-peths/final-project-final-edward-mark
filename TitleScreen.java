@@ -42,8 +42,13 @@ public class TitleScreen extends World
         addObject(label,258,270);
         Label label2 = new Label("Press <space> to start", 35);
         addObject(label2,258,333);
+        
+        Label label3 = new Label("Press <space> to drop", 35);
+        addObject(label3,258,333);
 
         label2.setLocation(255,437);
+        
+        label3.setLocation(255,500);
 
         label.setLocation(260,366);
         
