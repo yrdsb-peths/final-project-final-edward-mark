@@ -19,7 +19,7 @@ public class Wolf extends Actor
         for (int i = 0; i < idle.length ; i ++)
         {
             idle[i] = new GreenfootImage("images/wolf-idle/wolfidle" + i + ".png"); 
-            idle[i].scale(150,120);
+            idle[i].scale(180,150);
         }
         setImage(idle[0]);
         animationTimer.mark();
