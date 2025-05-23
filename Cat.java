@@ -31,6 +31,9 @@ public class Cat extends Actor
     }
     
     public void act() {
+        if (!(getWorld() instanceof MyWorld)){
+            return;
+        }
         if (checkMerge()){ 
             return;  // Stop everything if we merge
             
