@@ -10,12 +10,20 @@ public class MyWorld extends World
 {
     private Cat fallingCat;
     private boolean merging = false;
+    public int score = 0;
+    Label scoreLabel;
     
     public MyWorld() 
     {
         super(500, 600, 1);
+        
+        //Creates starting cat
         createCat();
         setBackground("images/background.jpg");
+        
+        //Creates score
+        scoreLabel = new Label("0",50);
+        addObject(scoreLabel, 30, 30);
     }
     
     public boolean isMerging() {
@@ -51,5 +59,12 @@ public class MyWorld extends World
     public Cat getFallingCat() 
     {
         return fallingCat;
-    }   
+    }  
+    
+    //Increases score
+    public void increaseScore(int amount)
+    {
+        score+=amount; 
+        scoreLabel.setValue(score);
+    }
 }

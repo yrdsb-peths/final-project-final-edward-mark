@@ -59,6 +59,11 @@ public class Dog extends Actor
                 hasMerged = true;
                 other.setMerged();
                 getWorld().addObject (new Wolf(), getX(), getY());
+                
+                //Increases score by 2 points
+                MyWorld world = (MyWorld) getWorld();
+                world.increaseScore(2); 
+                
                 getWorld().removeObject (other);
                 getWorld().removeObject (this);
             }

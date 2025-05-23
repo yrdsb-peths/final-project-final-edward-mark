@@ -32,7 +32,8 @@ public class Cat extends Actor
     
     public void act() {
         if (checkMerge()){ 
-            return;  // ✅ Stop everything if we merge
+            return;  // Stop everything if we merge
+            
         }
         animateCat();
         if (!falling) {
@@ -140,14 +141,18 @@ public class Cat extends Actor
             if (newY + dogHeight / 2 >= worldHeight - 5) {
                 newY = bottomY;
             }
-
+            
+            // Increases score by 1
+            world.increaseScore(1);
+            
+            // Adds dog
             world.addObject(dog, newX, newY);
     
             // Remove both cats
             world.removeObject(other);
             world.removeObject(this);
     
-            //Allows the world to spawn a new cat if this was the falling one
+            // Allows the world to spawn a new cat if this was the falling one
             if (world.getFallingCat() == this || world.getFallingCat() == other) {
                 world.clearFallingCat();
                 world.createCat();
