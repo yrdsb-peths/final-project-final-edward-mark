@@ -67,6 +67,7 @@ public abstract class Animal extends Actor {
 
         if (Greenfoot.isKeyDown("space")) {
             falling = true;
+            hasLanded = false;
         }
     }
 
@@ -76,12 +77,13 @@ public abstract class Animal extends Actor {
 
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
 
-        if (getY() + getImage().getHeight() / 2 >= getWorld().getHeight()) {
+        if (getY() >= bottomY) {
             setLocation(getX(), bottomY);
             hasLanded = true;
             MyWorld world = (MyWorld) getWorld();
             world.clearFallingAnimal();
-            world.createAnimal(); // Create next animal
+            world.createAnimal();
         }
+
     }
 }
