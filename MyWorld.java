@@ -1,85 +1,56 @@
 import greenfoot.*;
-/**
- * The main world
- * 
- * @author Mark Ku & Edward Wang
- * @version May 2025
- */
+import java.util.Random;
 
-public class MyWorld extends World 
-{
+public class MyWorld extends World {
     public static final int[] columns = {62, 187, 312, 437};
-    private Cat fallingCat;
+    private Animal fallingAnimal;
     private boolean merging = false;
     public int score = 0;
     Label scoreLabel;
-    
-    public MyWorld() 
-    {
+    private Random rand = new Random();
+
+    public MyWorld() {
         super(500, 600, 1);
-        
-        //Creates starting cat
-        createAnimal();
         setBackground("images/background.jpg");
-        
-        //Creates score
-        scoreLabel = new Label("0",50);
+        createAnimal();
+
+        scoreLabel = new Label("0", 50);
         addObject(scoreLabel, 30, 30);
     }
-    
-    public boolean isMerging() {
-        return merging;
+
+    public void act() {
+        merging = false;
     }
 
-    public void setMerging(boolean m) {
-        merging = m;
-    }
-    
-    public void act() {
-        merging = false; // Reset merging flag every frame
-    }
-    
-    //Randomly creates animal 
-    public void createAnimal()
-    {
-        if (fallingCat == null)
-        {
-            int choice = Greenfoot.getRandomNumber(3); // 0 = Cat, 1 = Dog, 2 = Wolf
-            Actor animal;
-    
-            if (choice == 0) {
+    public void createAnimal() {
+        if (fallingAnimal == null) {
+            Animal animal;
+            int type = rand.nextInt(3); // 0=Cat, 1=Dog, 2=Wolf
+            if (type == 0) {
                 animal = new Cat();
-                fallingCat = (Cat) animal; // Only Cat is controllable
-            } else if (choice == 1) {
+            } else if (type == 1) {
                 animal = new Dog();
-                fallingCat = null;
             } else {
                 animal = new Wolf();
-                fallingCat = null;
             }
-    
+
             int x = getWidth() / 2;
             int y = 25;
+            fallingAnimal = animal;
             addObject(animal, x, y);
         }
     }
 
-    
-    //allow the next cat to spawn
-    public void clearFallingCat()
-    {
-        fallingCat = null;
+    public void clearFallingAnimal() {
+        fallingAnimal = null;
     }
-    
-    public Cat getFallingCat() 
-    {
-        return fallingCat;
-    }  
-    
-    //Increases score
-    public void increaseScore(int amount)
-    {
-        score+=amount; 
+
+    public Animal getFallingAnimal() {
+        return fallingAnimal;
+    }
+
+    public void increaseScore(int amount) {
+        score += amount;
         scoreLabel.setValue(score);
     }
 }
