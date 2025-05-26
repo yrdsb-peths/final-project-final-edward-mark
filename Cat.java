@@ -16,8 +16,8 @@ public class Cat extends Actor
     protected boolean falling = false;
     private boolean merging = false;
     
-    
-     //Constructor for cat
+
+    //Constructor for cat
     public Cat()
     {
         for (int i=0; i<idle.length; i++)
@@ -166,6 +166,8 @@ public class Cat extends Actor
     
         return false; // no merge
     }
+    
+    
 
 }
 
