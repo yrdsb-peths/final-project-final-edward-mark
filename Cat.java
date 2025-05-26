@@ -16,6 +16,10 @@ public class Cat extends Actor
     protected boolean falling = false;
     private boolean merging = false;
     
+    private int currentColumn = 1;
+    private boolean keyLeftPressed = false;
+    private boolean keyRightPressed = false;
+    
 
     //Constructor for cat
     public Cat()
@@ -40,7 +44,7 @@ public class Cat extends Actor
         }
         animateCat();
         if (!falling) {
-            handleUserInput(); // move side to side or start fall
+            chooseColumn(); // move side to side or start fall
         } else {
             moveCat();
             checkIfLanded();
@@ -99,27 +103,47 @@ public class Cat extends Actor
 
     
     //Allows user to control the top cat
-    public void handleUserInput()
+    public void chooseColumn()
     {
         MyWorld world = (MyWorld) getWorld();
-        if (world == null || world.getFallingCat() != this){ 
-        return;
+        if (world == null || world.getFallingCat() != this)
+        { 
+            return;
         }       
         
-        //Ensures cat won't go off screen
-        int halfWidth = getImage().getWidth() / 2;
-        int worldWidth = getWorld().getWidth();
-    
-        if (Greenfoot.isKeyDown("left") && getX() - halfWidth > 0) {
-            setLocation(getX() - 3, getY()); // moves cat left
+        //controls for left arrow
+        if (Greenfoot.isKeyDown("left")) 
+        {
+            if (!keyLeftPressed && currentColumn > 0) 
+            {
+                currentColumn--;
+                keyLeftPressed = true;
+            }
+        } 
+        else 
+        {
+            keyLeftPressed = false;
         }
-    
-        if (Greenfoot.isKeyDown("right") && getX() + halfWidth < worldWidth) {
-            setLocation(getX() + 3, getY()); // moves cat right
+
+        // controls for right arrow
+        if (Greenfoot.isKeyDown("right")) {
+            if (!keyRightPressed && currentColumn < MyWorld.columns.length - 1) 
+            {
+                currentColumn++;
+                keyRightPressed = true;
+            }
+        } 
+        else 
+        {
+            keyRightPressed = false;
         }
+        int columnX = MyWorld.columns[currentColumn];
+        setLocation(columnX, getY());
     
-        if (Greenfoot.isKeyDown("space")) {
-            falling = true; // start falling
+        // Start falling when space is pressed
+        if (Greenfoot.isKeyDown("space")) 
+        {
+            falling = true;
         }
     }
     

@@ -21,7 +21,7 @@ public class Dog extends Actor
         for (int i = 0; i < 11 ; i ++)
         {
             idle[i] = new GreenfootImage("images/dog-idle/idle" + i + ".png"); 
-            idle[i].scale(120,110);
+            idle[i].scale(100,80);
         }
         setImage(idle[0]);
         animationTimer.mark();

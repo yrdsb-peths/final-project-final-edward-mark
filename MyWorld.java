@@ -8,6 +8,7 @@ import greenfoot.*;
 
 public class MyWorld extends World 
 {
+    public static final int[] columns = {62, 187, 312, 437};
     private Cat fallingCat;
     private boolean merging = false;
     public int score = 0;
