@@ -96,7 +96,7 @@ public class Cat extends Actor
             hasLanded = true;
             MyWorld world = (MyWorld) getWorld();
             world.clearFallingCat();
-            world.createCat();
+            world.createAnimal();
         }
 
     }
@@ -185,7 +185,7 @@ public class Cat extends Actor
             // Allows the world to spawn a new cat if this was the falling one
             if (world.getFallingCat() == this || world.getFallingCat() == other) {
                 world.clearFallingCat();
-                world.createCat();
+                world.createAnimal();
             }
     
             return true;

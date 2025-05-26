@@ -19,7 +19,7 @@ public class MyWorld extends World
         super(500, 600, 1);
         
         //Creates starting cat
-        createCat();
+        createAnimal();
         setBackground("images/background.jpg");
         
         //Creates score
@@ -39,17 +39,31 @@ public class MyWorld extends World
         merging = false; // Reset merging flag every frame
     }
     
-    public void createCat()
+    //Randomly creates animal 
+    public void createAnimal()
     {
-        //only spawn new cat if there isn't already a falling cat
         if (fallingCat == null)
         {
-            fallingCat = new Cat();
-            int x = getWidth()/2;
+            int choice = Greenfoot.getRandomNumber(3); // 0 = Cat, 1 = Dog, 2 = Wolf
+            Actor animal;
+    
+            if (choice == 0) {
+                animal = new Cat();
+                fallingCat = (Cat) animal; // Only Cat is controllable
+            } else if (choice == 1) {
+                animal = new Dog();
+                fallingCat = null;
+            } else {
+                animal = new Wolf();
+                fallingCat = null;
+            }
+    
+            int x = getWidth() / 2;
             int y = 25;
-            addObject (fallingCat, x, y);
+            addObject(animal, x, y);
         }
     }
+
     
     //allow the next cat to spawn
     public void clearFallingCat()
