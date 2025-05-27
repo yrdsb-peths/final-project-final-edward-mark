@@ -104,22 +104,23 @@ public abstract class Animal extends Actor {
     
     //This method checks if there is another animal in the same column and if they are close enough to merge
     private void checkForMerge(MyWorld world) {
-        if (falling) return;
-
         for (Animal other : world.getObjects(getClass())) {
             if (other != this && other.hasLanded) {
                 if (this.currentColumn == other.currentColumn) {
                     int verticalDistance = Math.abs(this.getY() - other.getY());
                     int mergeThreshold = (this.getImage().getHeight() + other.getImage().getHeight()) / 2;
-
+    
                     if (verticalDistance <= mergeThreshold) {
+                        // Merge and stop — the merged animal will continue the chain
                         mergeAnimals(world, other);
-                        return;
+                        return; // very important! do not continue after this object is removed
                     }
                 }
             }
         }
     }
+
+
 
     //Merges 2 of the same animals into a new one
     //Removes both original animals and spawns a merged one
@@ -129,23 +130,21 @@ public abstract class Animal extends Actor {
         if (merged == null) return;
     
         int x = getX();
-        int y = Math.max(getY(), other.getY()); // spawn where lower animal was
+        int y = Math.max(getY(), other.getY());
     
-        // Remove original animals
         world.removeObject(this);
         world.removeObject(other);
     
-        // Add merged animal at correct location
         world.addObject(merged, x, y);
-    
         merged.hasLanded = true;
         merged.currentColumn = this.currentColumn;
     
         world.increaseScore(10);
     
-        // Immediately check for another merge
+        // Chain merge call (already present — keep it!)
         merged.checkForMerge(world);
     }
+
 
     //Checks whether the current animal is still falling
     public boolean isFalling() {
