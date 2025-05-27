@@ -40,10 +40,10 @@ public class TitleScreen extends World
 
         Label label = new Label("Use \u2190  \u2192 to move", 35);
         addObject(label,258,270);
-        Label label2 = new Label("Press <space> to start", 35);
+        Label label2 = new Label("Press space to drop", 35);
         addObject(label2,258,333);
         
-        Label label3 = new Label("Press <space> to drop", 35);
+        Label label3 = new Label("Press space to start the game", 35);
         addObject(label3,258,333);
 
         label2.setLocation(255,437);
