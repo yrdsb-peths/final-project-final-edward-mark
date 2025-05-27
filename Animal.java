@@ -65,7 +65,9 @@ public abstract class Animal extends Actor {
     
     //Checks whether the animal has landed on the floor or on another animal
     protected void checkIfLanded() {
-        if (hasLanded || getWorld() == null) return;
+        if (!falling || hasLanded || getWorld() == null){
+            return;
+        }
 
         MyWorld world = (MyWorld)getWorld();
         int myBottom = getY() + getImage().getHeight()/2;
@@ -124,26 +126,31 @@ public abstract class Animal extends Actor {
 
     //Merges 2 of the same animals into a new one
     //Removes both original animals and spawns a merged one
-    
     protected void mergeAnimals(MyWorld world, Animal other) {
         Animal merged = createMergedAnimal();
         if (merged == null) return;
     
         int x = getX();
-        int y = Math.max(getY(), other.getY());
+        int initialY = Math.min(getY(), other.getY()); // Start near top of the merging pair
     
+        // Remove originals
         world.removeObject(this);
         world.removeObject(other);
     
-        world.addObject(merged, x, y);
-        merged.hasLanded = true;
+        // Temporarily place merged animal at top (will fall to correct Y)
+        world.addObject(merged, x, initialY - merged.getImage().getHeight());
+    
+        // Set its properties so it behaves like a falling animal
+        merged.falling = true;
+        merged.hasLanded = false;
         merged.currentColumn = this.currentColumn;
     
-        world.increaseScore(10);
-    
-        // Chain merge call (already present — keep it!)
-        merged.checkForMerge(world);
+        // Treat it as the "falling animal" to use normal physics
+        world.setFallingAnimal(merged);
     }
+
+
+
 
 
     //Checks whether the current animal is still falling

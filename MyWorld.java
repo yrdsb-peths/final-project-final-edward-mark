@@ -8,6 +8,8 @@ public class MyWorld extends World {
     public int score = 0;
     Label scoreLabel;
     private Random rand = new Random();
+    private SimpleTimer spawnTimer = new SimpleTimer();
+    private boolean readyToSpawn = true;
 
     public MyWorld() {
         super(500, 600, 1);
@@ -20,16 +22,19 @@ public class MyWorld extends World {
     
     public void act()
     {
-        if (fallingAnimal == null || (!fallingAnimal.isFalling() && fallingAnimal.hasLanded()))
-        {
+        if (!readyToSpawn && spawnTimer.millisElapsed() > 300) {
+            readyToSpawn = true;
+        }
+    
+        if (fallingAnimal == null && readyToSpawn) {
             createAnimal();
         }
     }
-    
 
     
+
     public void createAnimal() {
-        if (fallingAnimal == null) {
+        if (fallingAnimal == null && readyToSpawn) {
             Animal animal;
             int type = rand.nextInt(3); // 0=Cat, 1=Dog, 2=Wolf
             if (type == 0) {
@@ -39,17 +44,21 @@ public class MyWorld extends World {
             } else {
                 animal = new Wolf();
             }
-
+    
             int x = getWidth() / 2;
             int y = 25;
             fallingAnimal = animal;
             addObject(animal, x, y);
+    
+            // prevent instant re-spawn
+            readyToSpawn = false;
+            spawnTimer.mark();
         }
     }
-
+    
     public void clearFallingAnimal() {
         fallingAnimal = null;
-    }
+        }
 
     public Animal getFallingAnimal() {
         return fallingAnimal;
@@ -58,5 +67,9 @@ public class MyWorld extends World {
     public void increaseScore(int amount) {
         score += amount;
         scoreLabel.setValue(score);
+    }
+    
+    public void setFallingAnimal(Animal a) {
+        this.fallingAnimal = a;
     }
 }
