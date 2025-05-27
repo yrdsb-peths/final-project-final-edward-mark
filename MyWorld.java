@@ -17,11 +17,17 @@ public class MyWorld extends World {
         scoreLabel = new Label("0", 50);
         addObject(scoreLabel, 30, 30);
     }
-
-    public void act() {
-        merging = false;
+    
+    public void act()
+    {
+        if (fallingAnimal == null || (!fallingAnimal.isFalling() && fallingAnimal.hasLanded()))
+        {
+            createAnimal();
+        }
     }
+    
 
+    
     public void createAnimal() {
         if (fallingAnimal == null) {
             Animal animal;

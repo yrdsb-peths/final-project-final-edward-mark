@@ -10,7 +10,7 @@ public class Wolf extends Animal
         for (int i = 0; i < idle.length; i++) 
         {
             idle[i] = new GreenfootImage("images/wolf-idle/wolfidle" + i + ".png");
-            idle[i].scale(130, 100);
+            idle[i].scale(120, 90);
         }
         setImage(idle[0]);
         animationTimer.mark();
@@ -29,5 +29,11 @@ public class Wolf extends Animal
             imageIndex = (imageIndex + 1) % idle.length;
             animationTimer.mark();
         }
+    }
+    
+    @Override
+    protected Animal createMergedAnimal()
+    {
+        return null;
     }
 }
