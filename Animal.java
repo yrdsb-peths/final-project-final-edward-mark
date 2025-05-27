@@ -144,6 +144,18 @@ public abstract class Animal extends Actor {
         merged.falling = true;
         merged.hasLanded = false;
         merged.currentColumn = this.currentColumn;
+        
+         // Adjust score based on the type of the merged animal
+        int points = 0;
+        if (merged instanceof Cat) {
+            points = 5;
+        } else if (merged instanceof Dog) {
+            points = 10;
+        } else if (merged instanceof Wolf) {
+            points = 15;  // example if you want to add more animals later
+        }
+
+        world.increaseScore(points);
     
         // Treat it as the "falling animal" to use normal physics
         world.setFallingAnimal(merged);
