@@ -29,10 +29,13 @@ public class Cat extends Animal {
     }
 
     private void checkMerge() {
-        if (getWorld() == null) return;
+        if (getWorld() == null || !hasLanded)
+        {
+            return;
+        }
 
         Cat other = (Cat) getOneIntersectingObject(Cat.class);
-        if (other != null && other != this) {
+        if (other != null && other != this && other.hasLanded) {
             MyWorld world = (MyWorld) getWorld();
             int newX = (getX() + other.getX()) / 2;
             int newY = (getY() + other.getY()) / 2;

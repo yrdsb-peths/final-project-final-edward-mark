@@ -14,7 +14,6 @@ public class Dog extends Animal {
         animationTimer.mark();
     }
 
-    @Override
     protected void animate() {
         if (animationTimer.millisElapsed() > 200) {
             setImage(idle[imageIndex]);
@@ -23,28 +22,44 @@ public class Dog extends Animal {
         }
     }
 
-    @Override
     public void act() {
         super.act();
         checkMerge();
     }
 
     private void checkMerge() {
-        if (!hasMerged) {
-            Dog other = (Dog) getOneIntersectingObject(Dog.class);
-            if (other != null && other != this) {
-                hasMerged = true;
-                other.setMerged();
-                getWorld().addObject(new Wolf(), getX(), getY());
+    if (!hasLanded) return;
 
-                MyWorld world = (MyWorld) getWorld();
-                world.increaseScore(2);
+    Dog other = (Dog) getOneIntersectingObject(Dog.class);
+    if (other != null && other != this && other.hasLanded && !hasMerged && !other.hasMerged) {
+        hasMerged = true;
+        other.setMerged();
 
-                getWorld().removeObject(other);
-                getWorld().removeObject(this);
-            }
+        MyWorld world = (MyWorld) getWorld();
+        int newX = (getX() + other.getX()) / 2;
+        int newY = (getY() + other.getY()) / 2;
+
+        Wolf wolf = new Wolf();
+        int wolfHeight = wolf.getImage().getHeight();
+        int bottomY = world.getHeight() - wolfHeight / 2;
+
+        if (newY + wolfHeight / 2 >= world.getHeight() - 5) {
+            newY = bottomY;
         }
+
+        world.addObject(wolf, newX, newY);
+        world.increaseScore(2);
+
+        if (world.getFallingAnimal() == this || world.getFallingAnimal() == other) {
+            world.clearFallingAnimal();
+            world.createAnimal();
+        }
+
+        getWorld().removeObject(other);
+        getWorld().removeObject(this);
     }
+}
+
 
     public void setMerged() {
         hasMerged = true;
