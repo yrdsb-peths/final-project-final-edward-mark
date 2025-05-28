@@ -20,8 +20,7 @@ public class MyWorld extends World {
         addObject(scoreLabel, 30, 30);
     }
     
-    public void act()
-    {
+    public void act() {
         if (!readyToSpawn && spawnTimer.millisElapsed() > 300) {
             readyToSpawn = true;
         }
@@ -29,7 +28,10 @@ public class MyWorld extends World {
         if (fallingAnimal == null && readyToSpawn) {
             createAnimal();
         }
+    
+        checkGameOver(); // ← Add this line
     }
+
 
     
 
@@ -72,4 +74,16 @@ public class MyWorld extends World {
     public void setFallingAnimal(Animal a) {
         this.fallingAnimal = a;
     }
+    
+    public void checkGameOver() {
+        int gameOverY = 100; // You can adjust this height as needed
+    
+        for (Animal animal : getObjects(Animal.class)) {
+            if (animal.hasLanded() && animal.getY() < gameOverY) {
+                Greenfoot.setWorld(new GameOverWorld(score));
+                return;
+            }
+        }
+    }
+
 }
