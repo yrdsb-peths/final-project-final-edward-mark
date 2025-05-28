@@ -8,19 +8,19 @@ import greenfoot.*;
  * @version (May 2025)
  */
 
-public class Wolf extends Animal 
+public class Tiger extends Animal 
 {
-    private GreenfootImage[] idle = new GreenfootImage[2];
+    private GreenfootImage[] idle = new GreenfootImage[8];
     private int imageIndex = 0;
 
     //Constructor
-    public Wolf() 
+    public Tiger() 
     {
-        // Animates wolf
+        // Animates tiger
         for (int i = 0; i < idle.length; i++) 
         {
-            idle[i] = new GreenfootImage("images/wolf-idle/wolfidle" + i + ".png");
-            idle[i].scale(120, 90);
+            idle[i] = new GreenfootImage("images/tiger-idle/tiger" + i + ".png");
+            idle[i].scale(100, 80);
         }
         setImage(idle[0]);
         animationTimer.mark();
@@ -33,7 +33,7 @@ public class Wolf extends Animal
     
     protected void animate() 
     {
-        if (animationTimer.millisElapsed() > 250) 
+        if (animationTimer.millisElapsed() > 200) 
         {
             setImage(idle[imageIndex]);
             imageIndex = (imageIndex + 1) % idle.length;
@@ -44,6 +44,6 @@ public class Wolf extends Animal
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Tiger();
+        return null;
     }
 }
