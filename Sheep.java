@@ -44,6 +44,6 @@ public class Sheep extends Animal
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Wolf();
+        return new Cow();
     }
 }
