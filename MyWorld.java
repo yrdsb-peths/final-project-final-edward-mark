@@ -40,11 +40,11 @@ public class MyWorld extends World {
             Animal animal;
             int type = rand.nextInt(3); // 0=Cat, 1=Dog, 2=Wolf
             if (type == 0) {
-                animal = new Cat();
+                animal = new Rabbit();
             } else if (type == 1) {
-                animal = new Dog();
+                animal = new Cat();
             } else {
-                animal = new Wolf();
+                animal = new Dog();
             }
     
             int x = getWidth() / 2;
