@@ -1,5 +1,12 @@
 import greenfoot.*;
 
+    /**
+     * The dog is the second animal.
+     * Two dogs merge into a wolf.
+     * 
+     * @author (Mark Ku & Edward Wang) 
+     * @version (May 2025)
+     */
 public class Dog extends Animal {
     private GreenfootImage[] idle = new GreenfootImage[11];
     private int imageIndex = 0;

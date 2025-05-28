@@ -15,8 +15,9 @@ public class GameOverWorld extends World {
     }
 
     public void act() {
+        //checks if user presses space to restart the game
         if (Greenfoot.isKeyDown("space")) {
-            Greenfoot.setWorld(new MyWorld()); // restart the game
+            Greenfoot.setWorld(new MyWorld()); 
         }
     }
 }

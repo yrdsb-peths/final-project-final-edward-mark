@@ -1,5 +1,12 @@
 import greenfoot.*;
 
+    /**
+     * The animal class.
+     * 
+     * @author (Mark Ku & Edward Wang) 
+     * @version (May 2025)
+     */
+
 public abstract class Animal extends Actor {
     protected int speed = 6;
     protected boolean falling = false;
