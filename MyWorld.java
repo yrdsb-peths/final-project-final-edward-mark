@@ -38,10 +38,12 @@ public class MyWorld extends World {
     public void createAnimal() {
         if (fallingAnimal == null && readyToSpawn) {
             Animal animal;
-            int type = rand.nextInt(3); // 0=Cat, 1=Dog, 2=Wolf
+            int type = rand.nextInt(4); // 0=Cat, 1=Dog, 2=Wolf
             if (type == 0) {
                 animal = new Rabbit();
             } else if (type == 1) {
+                animal = new Chicken();
+            } else if (type == 2){
                 animal = new Cat();
             } else {
                 animal = new Dog();

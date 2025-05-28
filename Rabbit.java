@@ -44,9 +44,9 @@ public class Rabbit extends Animal {
         super.act();
     }
 
-    // Merges and creates dog
+    // Merges and creates chicken
     @Override
     protected Animal createMergedAnimal() {
-        return new Cat();
+        return new Chicken();
     }
 }
