@@ -17,7 +17,7 @@ public class MyWorld extends World {
         createAnimal();
 
         scoreLabel = new Label("0", 50);
-        addObject(scoreLabel, 30, 30);
+        addObject(scoreLabel, 50, 30);
     }
     
     public void act() {
