@@ -1,8 +1,8 @@
 import greenfoot.*;
 
     /**
-     * The dog is the second animal.
-     * Two dogs merge into a wolf.
+     * The dog is the third animal.
+     * Two dogs merge into a sheep.
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)
@@ -40,6 +40,6 @@ public class Dog extends Animal {
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Wolf();
+        return new Sheep();
     }
 }
