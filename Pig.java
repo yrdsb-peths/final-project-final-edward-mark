@@ -1,18 +1,18 @@
 import greenfoot.*;
 
-    /**
-     * The dog is the fourth animal.
-     * 
-     * @author (Mark Ku & Edward Wang) 
-     * @version (May 2025)
-     */
-public class Dog extends Animal {
-    private GreenfootImage[] idle = new GreenfootImage[11];
+/**
+ * The dog is the fifth animal.
+ * 
+ * @author (Mark Ku & Edward Wang) 
+ * @version (May 2025)
+ */
+public class Pig extends Animal {
+    private GreenfootImage[] idle = new GreenfootImage[4];
     private int imageIndex = 0;
 
-    public Dog() {
+    public Pig() {
         for (int i = 0; i < idle.length; i++) {
-            idle[i] = new GreenfootImage("images/dog-idle/idle" + i + ".png");
+            idle[i] = new GreenfootImage("images/pig-idle/pig" + i + ".png");
             idle[i].scale(100, 80);
         }
         setImage(idle[0]);
@@ -33,11 +33,11 @@ public class Dog extends Animal {
         super.act();
         
     }
- 
-    // Merges and creates pig
+    
+    // Merges and creates sheep
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Pig();
+        return new Sheep();
     }
 }

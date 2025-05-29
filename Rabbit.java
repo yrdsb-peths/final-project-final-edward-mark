@@ -2,7 +2,6 @@ import greenfoot.*;
 
     /**
      * The rabbit is the first animal
-     * 2 rabbits merge into a cat
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)

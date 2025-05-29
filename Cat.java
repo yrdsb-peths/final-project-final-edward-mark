@@ -1,8 +1,7 @@
 import greenfoot.*;
 
     /**
-     * The cat is the first animal.
-     * Two cats merge into a dog.
+     * The cat is the third animal.
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)
@@ -29,13 +28,14 @@ public class Cat extends Animal {
         animationTimer.mark();
     }
 
+    // Controls animation speed
     @Override
     protected void animate() {
         // Change frame every 150 milliseconds
         if (animationTimer.millisElapsed() > 150) {
             setImage(idle[imageIndex]);
             imageIndex = (imageIndex + 1) % idle.length; // Loop animation
-            animationTimer.mark(); // Reset timer
+            animationTimer.mark(); // Resets timer
         }
     }
 

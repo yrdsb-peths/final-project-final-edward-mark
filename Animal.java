@@ -15,6 +15,7 @@ public abstract class Animal extends Actor {
     protected boolean keyRightPressed = false;
     protected int currentColumn = 1;
     protected SimpleTimer animationTimer = new SimpleTimer();
+
     
     protected abstract Animal createMergedAnimal();
     protected abstract void animate();
@@ -167,10 +168,6 @@ public abstract class Animal extends Actor {
         // Treat it as the "falling animal" to use normal physics
         world.setFallingAnimal(merged);
     }
-
-
-
-
 
     //Checks whether the current animal is still falling
     public boolean isFalling() {

@@ -2,7 +2,7 @@ import greenfoot.*;
 
 
 /**
- * The wolf is the third animal.
+ * The wolf is the ninth animal.
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
@@ -26,11 +26,13 @@ public class Tiger extends Animal
         animationTimer.mark();
     }
 
+    // Delegates to Animal class for physics and merging
     public void act()
     {
         super.act();
     }
     
+    // Controls animation speed
     protected void animate() 
     {
         if (animationTimer.millisElapsed() > 200) 
@@ -41,6 +43,7 @@ public class Tiger extends Animal
         }
     }
     
+    // Final animal - does not merge
     @Override
     protected Animal createMergedAnimal()
     {

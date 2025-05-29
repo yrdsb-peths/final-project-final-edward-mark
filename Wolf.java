@@ -2,7 +2,7 @@ import greenfoot.*;
 
 
 /**
- * The wolf is the third animal.
+ * The wolf is the eigth animal.
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
@@ -41,6 +41,7 @@ public class Wolf extends Animal
         }
     }
     
+    // Merges and creates tiger
     @Override
     protected Animal createMergedAnimal()
     {

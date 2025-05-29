@@ -2,7 +2,7 @@ import greenfoot.*;
 
 
 /**
- * The sheep is the fourth animal
+ * The sheep is the sixth animal
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
@@ -26,11 +26,9 @@ public class Sheep extends Animal
         animationTimer.mark();
     }
 
-    public void act()
-    {
-        super.act();
-    }
     
+    
+    // Controls animation speed
     protected void animate() 
     {
         if (animationTimer.millisElapsed() > 200) 
@@ -41,6 +39,13 @@ public class Sheep extends Animal
         }
     }
     
+    // Delegates to Animal class for physics and merging
+    public void act()
+    {
+        super.act();
+    }
+    
+    // Merges and creates cow
     @Override
     protected Animal createMergedAnimal()
     {

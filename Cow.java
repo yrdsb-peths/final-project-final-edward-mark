@@ -1,12 +1,12 @@
 import greenfoot.*;
 
-    /**
-     * The dog is the third animal.
-     * Two dogs merge into a sheep.
-     * 
-     * @author (Mark Ku & Edward Wang) 
-     * @version (May 2025)
-     */
+/**
+ * The cow is the seventh animal.
+ * 
+ * @author (Mark Ku & Edward Wang) 
+ * @version (May 2025)
+ */
+    
 public class Cow extends Animal {
     private GreenfootImage[] idle = new GreenfootImage[7];
     private int imageIndex = 0;
@@ -20,6 +20,7 @@ public class Cow extends Animal {
         animationTimer.mark();
     }
 
+    // Controls animation speed
     protected void animate() {
         if (animationTimer.millisElapsed() > 200) {
             setImage(idle[imageIndex]);
@@ -28,15 +29,13 @@ public class Cow extends Animal {
         }
     }
 
+    // Delegates to Animal class for physics and merging
     public void act() {
         super.act();
         
     }
-   
-
-
     
-    
+    // Merges and creates wolf
     @Override
     protected Animal createMergedAnimal()
     {
