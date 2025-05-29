@@ -7,13 +7,13 @@ import greenfoot.*;
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)
      */
-public class Dog extends Animal {
-    private GreenfootImage[] idle = new GreenfootImage[11];
+public class Cow extends Animal {
+    private GreenfootImage[] idle = new GreenfootImage[7];
     private int imageIndex = 0;
 
-    public Dog() {
+    public Cow() {
         for (int i = 0; i < idle.length; i++) {
-            idle[i] = new GreenfootImage("images/dog-idle/idle" + i + ".png");
+            idle[i] = new GreenfootImage("images/cow-idle/cow" + i + ".png");
             idle[i].scale(100, 80);
         }
         setImage(idle[0]);
@@ -40,6 +40,6 @@ public class Dog extends Animal {
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Sheep();
+        return new Wolf();
     }
 }
