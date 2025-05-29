@@ -1,7 +1,8 @@
 import greenfoot.*;
 
 /**
- * The dog is the fifth animal.
+ * The pig is the fifth animal.
+ * 2 pigs merge into a sheep
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)

@@ -2,6 +2,7 @@ import greenfoot.*;
 
 /**
  * The cow is the seventh animal.
+ * 2 cows merge into a wolf
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)

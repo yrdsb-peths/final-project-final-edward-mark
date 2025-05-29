@@ -3,6 +3,7 @@ import greenfoot.*;
     /**
      * The cat is the third animal.
      * 
+     * 2 cats merge into a dog
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)
      */

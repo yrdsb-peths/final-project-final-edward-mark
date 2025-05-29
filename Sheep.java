@@ -3,6 +3,7 @@ import greenfoot.*;
 
 /**
  * The sheep is the sixth animal
+ * 2 sheeps merge into a cow
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)

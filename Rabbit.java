@@ -2,6 +2,7 @@ import greenfoot.*;
 
     /**
      * The rabbit is the first animal
+     * 2 rabbits merge into a chicken
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)

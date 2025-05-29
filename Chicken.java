@@ -3,7 +3,8 @@ import greenfoot.*;
 
 /**
  * The chicken is the second animal.
- * 
+ * 2 chickens merge into a cat
+ *
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
  */

@@ -1,18 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * This is the title screen, it should be displayed as soon as the player runs the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Mark, Edward) 
+ * @version (May 2025)
  */
 public class TitleScreen extends World
 {
     Label titleLabel = new Label ("Animal Merge", 60);
-    /**
-     * Constructor for objects of class TitleScreen.
-     * 
-     */
+    
+    //Constructor for the class TitleScreen
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.

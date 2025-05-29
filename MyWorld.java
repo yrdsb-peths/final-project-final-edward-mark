@@ -29,7 +29,7 @@ public class MyWorld extends World {
             createAnimal();
         }
     
-        checkGameOver(); // ← Add this line
+        checkGameOver(); 
     }
 
 
@@ -38,7 +38,7 @@ public class MyWorld extends World {
     public void createAnimal() {
         if (fallingAnimal == null && readyToSpawn) {
             Animal animal;
-            int type = rand.nextInt(4); // 0=Cat, 1=Dog, 2=Wolf
+            int type = rand.nextInt(4); // 0=Rabbit, 1=Chicken, 2=Cat, 3=Dog
             if (type == 0) {
                 animal = new Rabbit();
             } else if (type == 1) {
@@ -77,8 +77,9 @@ public class MyWorld extends World {
         this.fallingAnimal = a;
     }
     
+    //This method ends the game when an animal goes over y=100
     public void checkGameOver() {
-        int gameOverY = 100; // You can adjust this height as needed
+        int gameOverY = 100; //adjust height as needed !!!!
     
         for (Animal animal : getObjects(Animal.class)) {
             if (animal.hasLanded() && animal.getY() < gameOverY) {

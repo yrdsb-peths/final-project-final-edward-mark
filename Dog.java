@@ -2,6 +2,7 @@ import greenfoot.*;
 
     /**
      * The dog is the fourth animal.
+     * 2 dogs merge into a pig
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)

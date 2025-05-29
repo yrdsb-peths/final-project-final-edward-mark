@@ -3,6 +3,7 @@ import greenfoot.*;
 
 /**
  * The wolf is the eigth animal.
+ * 2 wolves merge into a tiger
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)

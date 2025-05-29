@@ -88,7 +88,7 @@ public abstract class Animal extends Actor {
             return;
         }
 
-        // Check animal collision
+        // Check for animal collision
         for (Animal other : world.getObjects(Animal.class)) {
             if (other != this && other.hasLanded()) {
                 int otherTop = other.getY() - other.getImage().getHeight()/2;
@@ -121,7 +121,7 @@ public abstract class Animal extends Actor {
                     int mergeThreshold = (this.getImage().getHeight() + other.getImage().getHeight()) / 2;
     
                     if (verticalDistance <= mergeThreshold) {
-                        // Merge and stop — the merged animal will continue the chain
+                        // Merge and stop, the merged animal will continue the chain
                         mergeAnimals(world, other);
                         return; // very important! do not continue after this object is removed
                     }
