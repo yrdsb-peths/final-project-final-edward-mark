@@ -1,4 +1,4 @@
-import greenfoot.*;
+  import greenfoot.*;
 
 public class GameOverWorld extends World {
     public GameOverWorld(int finalScore) {
