@@ -7,7 +7,7 @@ public class GameOverWorld extends World {
 
         Label gameOverLabel = new Label("Game Over", 70);
         Label scoreLabel = new Label("Score: " + finalScore, 50);
-        Label restartLabel = new Label("Press SPACE to restart", 30);
+        Label restartLabel = new Label("Press <r> to restart", 30);
 
         addObject(gameOverLabel, getWidth() / 2, getHeight() / 2 - 50);
         addObject(scoreLabel, getWidth() / 2, getHeight() / 2 + 10);
@@ -15,8 +15,8 @@ public class GameOverWorld extends World {
     }
 
     public void act() {
-        //checks if user presses space to restart the game
-        if (Greenfoot.isKeyDown("space")) {
+        //checks if user presses r to restart the game
+        if (Greenfoot.isKeyDown("r")) {
             Greenfoot.setWorld(new MyWorld()); 
         }
     }
