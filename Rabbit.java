@@ -2,12 +2,15 @@ import greenfoot.*;
 
     /**
      * The rabbit is the first animal
+     * 2 rabbits merge into a cat
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (May 2025)
      */
     
 public class Rabbit extends Animal {
+    // Array to store all frames of the rabbit's idle animation
+    private GreenfootImage[] idle = new GreenfootImage[7];
 
     // Keeps track of which animation frame to display
     private int imageIndex = 0;
@@ -16,6 +19,7 @@ public class Rabbit extends Animal {
     public Rabbit() {
         // Animates the rabbit
         for (int i = 0; i < idle.length; i++) {
+            idle[i] = new GreenfootImage("images/rabbit-idle/rabbit" + i + ".png");
             idle[i].scale(70, 60); // Set size of each frame to fit the game
         }
 
@@ -41,6 +45,7 @@ public class Rabbit extends Animal {
     }
 
     // Merges and creates chicken
+    // Merges and creates cat
     @Override
     protected Animal createMergedAnimal() {
         return new Chicken();
