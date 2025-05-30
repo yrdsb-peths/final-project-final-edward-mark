@@ -2,25 +2,25 @@ import greenfoot.*;
 
 
 /**
- * The wolf is the eigth animal.
- * 2 wolves merge into a rhino
+ * The wolf is the ninth animal.
+ * 2 rhinos merge into a tiger
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
  */
 
-public class Wolf extends Animal 
+public class Rhino extends Animal 
 {
-    private GreenfootImage[] idle = new GreenfootImage[2];
+    private GreenfootImage[] idle = new GreenfootImage[3];
     private int imageIndex = 0;
 
     //Constructor
-    public Wolf() 
+    public Rhino() 
     {
         // Animates wolf
         for (int i = 0; i < idle.length; i++) 
         {
-            idle[i] = new GreenfootImage("images/wolf-idle/wolfidle" + i + ".png");
+            idle[i] = new GreenfootImage("images/rhino-idle/rhino" + i + ".png");
             idle[i].scale(120, 90);
         }
         setImage(idle[0]);
@@ -42,10 +42,10 @@ public class Wolf extends Animal
         }
     }
     
-    // Merges and creates rhino
+    // Merges and creates tiger
     @Override
     protected Animal createMergedAnimal()
     {
-        return new Rhino();
+        return new Tiger();
     }
 }

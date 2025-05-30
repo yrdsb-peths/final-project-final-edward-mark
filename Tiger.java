@@ -2,7 +2,7 @@ import greenfoot.*;
 
 
 /**
- * The tiger is the ninth animal.
+ * The tiger is the tenth animal.
  * 
  * @author (Mark Ku & Edward Wang) 
  * @version (May 2025)
