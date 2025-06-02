@@ -3,7 +3,7 @@
 public class GameOverWorld extends World {
     public GameOverWorld(int finalScore) {
         super(500, 600, 1);
-        setBackground("images/background.jpg");
+        setBackground("images/title.jpg");
 
         Label gameOverLabel = new Label("Game Over", 70);
         Label scoreLabel = new Label("Score: " + finalScore, 50);
