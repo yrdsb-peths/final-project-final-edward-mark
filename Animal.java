@@ -4,7 +4,7 @@ import greenfoot.*;
      * The animal class.
      * 
      * @author (Mark Ku & Edward Wang) 
-     * @version (May 2025)
+     * @version (June 2025)
      */
 
 public abstract class Animal extends Actor {
