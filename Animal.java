@@ -15,7 +15,7 @@ public abstract class Animal extends Actor {
     protected boolean keyRightPressed = false;
     protected int currentColumn = 1;
     protected SimpleTimer animationTimer = new SimpleTimer();
-
+    GreenfootSound mergeSound = new GreenfootSound ("sounds/gainpoints.mp3");
     
     protected abstract Animal createMergedAnimal();
     protected abstract void animate();
@@ -164,6 +164,7 @@ public abstract class Animal extends Actor {
         }
 
         world.increaseScore(points);
+        mergeSound.play();
     
         // Treat it as the "falling animal" to use normal physics
         world.setFallingAnimal(merged);
