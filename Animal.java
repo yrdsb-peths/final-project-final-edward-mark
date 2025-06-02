@@ -155,13 +155,27 @@ public abstract class Animal extends Actor {
         
          // Adjust score based on the type of the merged animal
         int points = 0;
-        if (merged instanceof Cat) {
-            points = 5;
-        } else if (merged instanceof Dog) {
-            points = 10;
-        } else if (merged instanceof Wolf) {
-            points = 15;  // example if you want to add more animals later
+        if (merged instanceof Chicken){
+            points = 2;
         }
+        else if (merged instanceof Cat) {
+            points = 4;
+        } else if (merged instanceof Dog) {
+            points = 6;
+        } else if (merged instanceof Pig) {
+            points = 8;  // example if you want to add more animals later
+        } else if (merged instanceof Sheep) {
+            points = 10;
+        } else if (merged instanceof Cow) {
+            points = 15;
+        } else if (merged instanceof Wolf) {
+            points = 25;
+        } else if (merged instanceof Rhino) {
+            points = 50;
+        } else if (merged instanceof Tiger) {
+            points = 100;
+        }
+        
 
         world.increaseScore(points);
         mergeSound.play();
