@@ -6,7 +6,9 @@ public class MyWorld extends World {
     private Animal fallingAnimal;
     private boolean merging = false;
     public int score = 0;
+    public static int highScore = 0;
     Label scoreLabel;
+    Label highScoreLabel;
     private Random rand = new Random();
     private SimpleTimer spawnTimer = new SimpleTimer();
     private boolean readyToSpawn = true;
@@ -18,6 +20,8 @@ public class MyWorld extends World {
 
         scoreLabel = new Label("0", 50);
         addObject(scoreLabel, 50, 30);
+        highScoreLabel = new Label ("High score: " + highScore, 30);
+        addObject (highScoreLabel, 380, 30);
     }
     
     public void act() {
@@ -71,6 +75,11 @@ public class MyWorld extends World {
     public void increaseScore(int amount) {
         score += amount;
         scoreLabel.setValue(score);
+        if (score > highScore)
+        {
+            highScore = score;
+            highScoreLabel.setValue("High score: " + highScore);
+        }
     }
     
     public void setFallingAnimal(Animal a) {
@@ -83,7 +92,7 @@ public class MyWorld extends World {
     
         for (Animal animal : getObjects(Animal.class)) {
             if (animal.hasLanded() && animal.getY() < gameOverY) {
-                Greenfoot.setWorld(new GameOverWorld(score));
+                Greenfoot.setWorld(new GameOverWorld(score, highScore));
                 return;
             }
         }
