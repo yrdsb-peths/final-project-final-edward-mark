@@ -16,6 +16,8 @@ public abstract class Animal extends Actor {
     protected int currentColumn = 1;
     protected SimpleTimer animationTimer = new SimpleTimer();
     GreenfootSound mergeSound = new GreenfootSound ("sounds/gainpoints.mp3");
+    private SimpleTimer spaceCooldown = new SimpleTimer();
+
     
     protected abstract Animal createMergedAnimal();
     protected abstract void animate();
@@ -43,7 +45,7 @@ public abstract class Animal extends Actor {
     protected void chooseColumn() {
         MyWorld world = (MyWorld) getWorld();
         if (world == null || world.getFallingAnimal() != this) return;
-
+    
         if (Greenfoot.isKeyDown("left")) {
             if (!keyLeftPressed && currentColumn > 0) {
                 currentColumn--;
@@ -52,7 +54,7 @@ public abstract class Animal extends Actor {
         } else {
             keyLeftPressed = false;
         }
-
+    
         if (Greenfoot.isKeyDown("right")) {
             if (!keyRightPressed && currentColumn < MyWorld.columns.length - 1) {
                 currentColumn++;
@@ -61,15 +63,18 @@ public abstract class Animal extends Actor {
         } else {
             keyRightPressed = false;
         }
-
+    
         int columnX = MyWorld.columns[currentColumn];
         setLocation(columnX, getY());
-
-        if (Greenfoot.isKeyDown("space")) {
+    
+        // Ensures that space will not be double pressed
+        if (Greenfoot.isKeyDown("space") && spaceCooldown.millisElapsed() > 250) {
             falling = true;
             hasLanded = false;
+            spaceCooldown.mark(); // restarts the cooldown
         }
     }
+
     
     //Checks whether the animal has landed on the floor or on another animal
     protected void checkIfLanded() {
@@ -163,7 +168,7 @@ public abstract class Animal extends Actor {
         } else if (merged instanceof Dog) {
             points = 6;
         } else if (merged instanceof Pig) {
-            points = 8;  // example if you want to add more animals later
+            points = 8;  
         } else if (merged instanceof Sheep) {
             points = 10;
         } else if (merged instanceof Cow) {
