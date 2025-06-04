@@ -12,7 +12,10 @@ public class MyWorld extends World {
     private Random rand = new Random();
     private SimpleTimer spawnTimer = new SimpleTimer();
     private boolean readyToSpawn = true;
-
+    private int tigerCount = 0;
+    
+   
+    
     public MyWorld() {
         super(500, 600, 1);
         setBackground("images/background.jpg");
@@ -37,7 +40,14 @@ public class MyWorld extends World {
     }
 
 
-    
+    public void tigerCount()
+    {
+        tigerCount++;
+        if (tigerCount == 4)
+        {
+            Greenfoot.setWorld (new YouWin (this));
+        }
+    }
 
     public void createAnimal() {
         if (fallingAnimal == null && readyToSpawn) {

@@ -179,6 +179,7 @@ public abstract class Animal extends Actor {
             points = 50;
         } else if (merged instanceof Tiger) {
             points = 100;
+            world.tigerCount();
         }
         
 
