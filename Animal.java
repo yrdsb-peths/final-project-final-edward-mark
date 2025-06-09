@@ -2,7 +2,6 @@ import greenfoot.*;
 
     /**
      * The animal class.
-     * Stores controls for each animal
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (June 2025)
@@ -43,10 +42,6 @@ public abstract class Animal extends Actor {
         }
     }
     
-
-    // Moves the animal down, stops at the bottom of the world
-    protected void moveAnimal() {
-
     //moves the animal down, stops at the bottom of the world
     protected void moveAnimal() 
     {
@@ -54,10 +49,6 @@ public abstract class Animal extends Actor {
         setLocation(getX(), Math.min(getY() + speed, bottomY));
     }
     
-
-    // Handles left/right/space input to move the animal between columns
-    protected void chooseColumn() 
-    {
     //handles left/right/space input to move the animal between columns
     protected void chooseColumn() 
     {
@@ -141,8 +132,6 @@ public abstract class Animal extends Actor {
         }
     }
 
-    // This method is called when the animal lands
-    private void finishLanding(MyWorld world) {
     //This method is called when the animal lands
     private void finishLanding(MyWorld world) 
     {
@@ -153,12 +142,6 @@ public abstract class Animal extends Actor {
     }
 
     
-
-    // This method checks if there is another animal in the same column and if they are close enough to merge
-    private void checkForMerge(MyWorld world) {
-        for (Animal other : world.getObjects(getClass())) {
-            if (other != this && other.hasLanded) {
-                if (this.currentColumn == other.currentColumn) {
     //This method checks if there is another animal in the same column and if they are close enough to merge
     private void checkForMerge(MyWorld world) 
     {
@@ -168,7 +151,6 @@ public abstract class Animal extends Actor {
             {
                 if (this.currentColumn == other.currentColumn) 
                 {
-    
                     int verticalDistance = Math.abs(this.getY() - other.getY());
                     int mergeThreshold = (this.getImage().getHeight() + other.getImage().getHeight()) / 2;
     
@@ -184,9 +166,6 @@ public abstract class Animal extends Actor {
     }
 
 
-    // Merges 2 of the same animals into a new one
-    // Removes both original animals and spawns a merged one
-    protected void mergeAnimals(MyWorld world, Animal other) {
 
     //Merges 2 of the same animals into a new one
     //Removes both original animals and spawns a merged one
@@ -210,7 +189,7 @@ public abstract class Animal extends Actor {
         merged.hasLanded = false;
         merged.currentColumn = this.currentColumn;
         
-        // Adjust score based on the type of the merged animal
+         // Adjust score based on the type of the merged animal
         int points = 0;
         if (merged instanceof Chicken){
             points = 2;
@@ -242,13 +221,6 @@ public abstract class Animal extends Actor {
         world.setFallingAnimal(merged);
     }
 
-    // Checks whether the current animal is still falling
-    public boolean isFalling() {
-        return falling && !hasLanded;
-    }
-    
-    // Checks whether the current animal has already landed
-    public boolean hasLanded() {
     //Checks whether the current animal is still falling
     public boolean isFalling() 
     {
@@ -258,9 +230,6 @@ public abstract class Animal extends Actor {
     //checks whether the current animal has already landed
     public boolean hasLanded() 
     {
-
         return hasLanded;
     }
-    }
-}
 }
