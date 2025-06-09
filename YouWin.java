@@ -1,28 +1,30 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class YouWin here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+    /**
+     * The end screen / game over screen.
+     * 
+     * @author (Mark Ku & Edward Wang) 
+     * @version (June 2025)
+     */
+    
 public class YouWin extends World
 {
     
     private World currentRun;
-    /**
-     * Constructor for objects of class YouWin.
-     * 
-     */
+    
+    // Constructor
     public YouWin(World currentRun)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Creates a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(500, 600, 1); 
+        // Sets background image
         setBackground ("images/title.jpg");
         
         
         this.currentRun = currentRun;
+        // Calls prepare method, adding world labels
         prepare();
+        
     }
     
     public void act() 
@@ -38,6 +40,7 @@ public class YouWin extends World
         }
     }
     
+    // Adds labels
     public void prepare()
     {
         Label win = new Label ("You Win!", 60);

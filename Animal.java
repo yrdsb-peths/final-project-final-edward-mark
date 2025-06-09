@@ -2,6 +2,7 @@ import greenfoot.*;
 
     /**
      * The animal class.
+     * Stores controls for each animal
      * 
      * @author (Mark Ku & Edward Wang) 
      * @version (June 2025)
@@ -35,13 +36,13 @@ public abstract class Animal extends Actor {
         }
     }
     
-    //moves the animal down, stops at the bottom of the world
+    // Moves the animal down, stops at the bottom of the world
     protected void moveAnimal() {
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
         setLocation(getX(), Math.min(getY() + speed, bottomY));
     }
     
-    //handles left/right/space input to move the animal between columns
+    // Handles left/right/space input to move the animal between columns
     protected void chooseColumn() {
         MyWorld world = (MyWorld) getWorld();
         if (world == null || world.getFallingAnimal() != this) return;
@@ -108,7 +109,7 @@ public abstract class Animal extends Actor {
         }
     }
 
-    //This method is called when the animal lands
+    // This method is called when the animal lands
     private void finishLanding(MyWorld world) {
         hasLanded = true;
         falling = false;
@@ -117,7 +118,7 @@ public abstract class Animal extends Actor {
     }
 
     
-    //This method checks if there is another animal in the same column and if they are close enough to merge
+    // This method checks if there is another animal in the same column and if they are close enough to merge
     private void checkForMerge(MyWorld world) {
         for (Animal other : world.getObjects(getClass())) {
             if (other != this && other.hasLanded) {
@@ -137,8 +138,8 @@ public abstract class Animal extends Actor {
 
 
 
-    //Merges 2 of the same animals into a new one
-    //Removes both original animals and spawns a merged one
+    // Merges 2 of the same animals into a new one
+    // Removes both original animals and spawns a merged one
     protected void mergeAnimals(MyWorld world, Animal other) {
         Animal merged = createMergedAnimal();
         if (merged == null) return;
@@ -190,12 +191,12 @@ public abstract class Animal extends Actor {
         world.setFallingAnimal(merged);
     }
 
-    //Checks whether the current animal is still falling
+    // Checks whether the current animal is still falling
     public boolean isFalling() {
         return falling && !hasLanded;
     }
     
-    //checks whether the current animal has already landed
+    // Checks whether the current animal has already landed
     public boolean hasLanded() {
         return hasLanded;
     }

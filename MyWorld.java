@@ -1,7 +1,15 @@
 import greenfoot.*;
 import java.util.Random;
 
+    /**
+     * The game world.
+     * 
+     * @author (Mark Ku & Edward Wang) 
+     * @version (June 2025)
+     */
+
 public class MyWorld extends World {
+    
     public static final int[] columns = {62, 187, 312, 437};
     private Animal fallingAnimal;
     private boolean merging = false;
@@ -15,7 +23,7 @@ public class MyWorld extends World {
     private int tigerCount = 0;
     
    
-    
+    //Constructor
     public MyWorld() {
         super(500, 600, 1);
         setBackground("images/background.jpg");
@@ -28,10 +36,13 @@ public class MyWorld extends World {
     }
     
     public void act() {
+        // Small delay between animals spawning
         if (!readyToSpawn && spawnTimer.millisElapsed() > 300) {
             readyToSpawn = true;
         }
     
+        // Ensures that the next animal will only be created after the first
+        // one lands.
         if (fallingAnimal == null && readyToSpawn) {
             createAnimal();
         }
@@ -39,7 +50,8 @@ public class MyWorld extends World {
         checkGameOver(); 
     }
 
-
+    // Checks to see how many tigers are in the world
+    // If there are 4, the world will be set to the win screen
     public void tigerCount()
     {
         tigerCount++;
@@ -49,6 +61,7 @@ public class MyWorld extends World {
         }
     }
 
+    // Creates a random animal
     public void createAnimal() {
         if (fallingAnimal == null && readyToSpawn) {
             Animal animal;
@@ -82,6 +95,7 @@ public class MyWorld extends World {
         return fallingAnimal;
     }
 
+    // Increases score by any amount
     public void increaseScore(int amount) {
         score += amount;
         scoreLabel.setValue(score);
@@ -96,9 +110,9 @@ public class MyWorld extends World {
         this.fallingAnimal = a;
     }
     
-    //This method ends the game when an animal goes over y=100
+    // Ends the game when an animal goes over y=100
     public void checkGameOver() {
-        int gameOverY = 100; //adjust height as needed !!!!
+        int gameOverY = 100; 
     
         for (Animal animal : getObjects(Animal.class)) {
             if (animal.hasLanded() && animal.getY() < gameOverY) {
