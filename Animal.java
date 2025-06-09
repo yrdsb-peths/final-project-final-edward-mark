@@ -15,53 +15,78 @@ public abstract class Animal extends Actor {
     protected boolean keyLeftPressed = false;
     protected boolean keyRightPressed = false;
     protected int currentColumn = 1;
+    
     protected SimpleTimer animationTimer = new SimpleTimer();
-    GreenfootSound mergeSound = new GreenfootSound ("sounds/gainpoints.mp3");
     private SimpleTimer spaceCooldown = new SimpleTimer();
+    GreenfootSound mergeSound = new GreenfootSound ("sounds/gainpoints.mp3");
+    
 
     
     protected abstract Animal createMergedAnimal();
     protected abstract void animate();
 
     public void act() {
-        if (!(getWorld() instanceof MyWorld)) return;
-
+        if (!(getWorld() instanceof MyWorld)) 
+        {
+            return;
+        }
         animate(); 
 
-        if (!falling) {
+        if (!falling) 
+        {
             chooseColumn();
-        } else {
+        }
+        else 
+        {
             moveAnimal();
-            checkIfLanded();
+            checkIfLanded(); //check if the previous animal has landed
         }
     }
     
+
     // Moves the animal down, stops at the bottom of the world
     protected void moveAnimal() {
+
+    //moves the animal down, stops at the bottom of the world
+    protected void moveAnimal() 
+    {
         int bottomY = getWorld().getHeight() - getImage().getHeight() / 2;
         setLocation(getX(), Math.min(getY() + speed, bottomY));
     }
     
+
     // Handles left/right/space input to move the animal between columns
-    protected void chooseColumn() {
+    protected void chooseColumn() 
+    {
+    //handles left/right/space input to move the animal between columns
+    protected void chooseColumn() 
+    {
         MyWorld world = (MyWorld) getWorld();
         if (world == null || world.getFallingAnimal() != this) return;
     
-        if (Greenfoot.isKeyDown("left")) {
-            if (!keyLeftPressed && currentColumn > 0) {
+        if (Greenfoot.isKeyDown("left")) 
+        {
+            if (!keyLeftPressed && currentColumn > 0) 
+            {
                 currentColumn--;
                 keyLeftPressed = true;
             }
-        } else {
+        } 
+        else 
+        {
             keyLeftPressed = false;
         }
     
-        if (Greenfoot.isKeyDown("right")) {
-            if (!keyRightPressed && currentColumn < MyWorld.columns.length - 1) {
+        if (Greenfoot.isKeyDown("right")) 
+        {
+            if (!keyRightPressed && currentColumn < MyWorld.columns.length - 1) 
+            {
                 currentColumn++;
                 keyRightPressed = true;
             }
-        } else {
+        } 
+        else 
+        {
             keyRightPressed = false;
         }
     
@@ -69,7 +94,8 @@ public abstract class Animal extends Actor {
         setLocation(columnX, getY());
     
         // Ensures that space will not be double pressed
-        if (Greenfoot.isKeyDown("space") && spaceCooldown.millisElapsed() > 250) {
+        if (Greenfoot.isKeyDown("space") && spaceCooldown.millisElapsed() > 250) 
+        {
             falling = true;
             hasLanded = false;
             spaceCooldown.mark(); // restarts the cooldown
@@ -78,8 +104,10 @@ public abstract class Animal extends Actor {
 
     
     //Checks whether the animal has landed on the floor or on another animal
-    protected void checkIfLanded() {
-        if (!falling || hasLanded || getWorld() == null){
+    protected void checkIfLanded() 
+    {
+        if (!falling || hasLanded || getWorld() == null)
+        {
             return;
         }
 
@@ -88,19 +116,23 @@ public abstract class Animal extends Actor {
         int worldBottom = world.getHeight();
 
         // Check floor
-        if (myBottom >= worldBottom) {
+        if (myBottom >= worldBottom) 
+        {
             setLocation(getX(), worldBottom - getImage().getHeight()/2);
             finishLanding(world);
             return;
         }
 
         // Check for animal collision
-        for (Animal other : world.getObjects(Animal.class)) {
-            if (other != this && other.hasLanded()) {
+        for (Animal other : world.getObjects(Animal.class)) 
+        {
+            if (other != this && other.hasLanded()) 
+            {
                 int otherTop = other.getY() - other.getImage().getHeight()/2;
                 boolean sameColumn = this.currentColumn == other.currentColumn;
 
-                if (sameColumn && myBottom >= otherTop - 2) { // add small buffer
+                if (sameColumn && myBottom >= otherTop - 2) 
+                { // add buffer
                     setLocation(getX(), otherTop - getImage().getHeight()/2);
                     finishLanding(world);
                     return;
@@ -111,6 +143,9 @@ public abstract class Animal extends Actor {
 
     // This method is called when the animal lands
     private void finishLanding(MyWorld world) {
+    //This method is called when the animal lands
+    private void finishLanding(MyWorld world) 
+    {
         hasLanded = true;
         falling = false;
         world.clearFallingAnimal();
@@ -118,15 +153,27 @@ public abstract class Animal extends Actor {
     }
 
     
+
     // This method checks if there is another animal in the same column and if they are close enough to merge
     private void checkForMerge(MyWorld world) {
         for (Animal other : world.getObjects(getClass())) {
             if (other != this && other.hasLanded) {
                 if (this.currentColumn == other.currentColumn) {
+    //This method checks if there is another animal in the same column and if they are close enough to merge
+    private void checkForMerge(MyWorld world) 
+    {
+        for (Animal other : world.getObjects(getClass())) 
+        {
+            if (other != this && other.hasLanded) 
+            {
+                if (this.currentColumn == other.currentColumn) 
+                {
+    
                     int verticalDistance = Math.abs(this.getY() - other.getY());
                     int mergeThreshold = (this.getImage().getHeight() + other.getImage().getHeight()) / 2;
     
-                    if (verticalDistance <= mergeThreshold) {
+                    if (verticalDistance <= mergeThreshold) 
+                    {
                         // Merge and stop, the merged animal will continue the chain
                         mergeAnimals(world, other);
                         return; // very important! do not continue after this object is removed
@@ -137,10 +184,14 @@ public abstract class Animal extends Actor {
     }
 
 
-
     // Merges 2 of the same animals into a new one
     // Removes both original animals and spawns a merged one
     protected void mergeAnimals(MyWorld world, Animal other) {
+
+    //Merges 2 of the same animals into a new one
+    //Removes both original animals and spawns a merged one
+    protected void mergeAnimals(MyWorld world, Animal other) 
+    {
         Animal merged = createMergedAnimal();
         if (merged == null) return;
     
@@ -159,7 +210,7 @@ public abstract class Animal extends Actor {
         merged.hasLanded = false;
         merged.currentColumn = this.currentColumn;
         
-         // Adjust score based on the type of the merged animal
+        // Adjust score based on the type of the merged animal
         int points = 0;
         if (merged instanceof Chicken){
             points = 2;
@@ -198,6 +249,18 @@ public abstract class Animal extends Actor {
     
     // Checks whether the current animal has already landed
     public boolean hasLanded() {
+    //Checks whether the current animal is still falling
+    public boolean isFalling() 
+    {
+        return falling && !hasLanded;
+    }
+    
+    //checks whether the current animal has already landed
+    public boolean hasLanded() 
+    {
+
         return hasLanded;
     }
+    }
+}
 }
