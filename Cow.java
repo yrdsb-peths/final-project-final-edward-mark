@@ -37,7 +37,7 @@ public class Cow extends Animal {
     }
     
     // Merges and creates wolf
-    @Override
+
     protected Animal createMergedAnimal()
     {
         return new Wolf();

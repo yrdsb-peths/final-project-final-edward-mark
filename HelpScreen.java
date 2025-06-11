@@ -8,24 +8,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (June 2025)
  */
 
-public class HelpScreen extends World {
+public class HelpScreen extends World 
+{
 
     // Constructor
-    public HelpScreen() {
+    public HelpScreen() 
+    {
         super(500, 600, 1); // Sets world size
         setBackground("images/title.jpg"); // Sets background image
         prepare(); // Adds instructions and visuals
     }
 
-    public void act() {
+    public void act() 
+    {
         // Returns to TitleScreen when SPACE is pressed
-        if (Greenfoot.isKeyDown("space")) {
+        if (Greenfoot.isKeyDown("space")) 
+        {
             Greenfoot.setWorld(new TitleScreen());
         }
     }
 
     // Adds instructions
-    private void prepare() {
+    private void prepare() 
+    {
         Dog dog = new Dog(); 
         addObject(dog, 241, 150);
 

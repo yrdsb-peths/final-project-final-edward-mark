@@ -20,11 +20,9 @@ public abstract class Animal extends Actor {
     GreenfootSound mergeSound = new GreenfootSound ("sounds/gainpoints.mp3");
     
 
-    
-    protected abstract Animal createMergedAnimal();
-    protected abstract void animate();
 
-    public void act() {
+    public void act() 
+    {
         if (!(getWorld() instanceof MyWorld)) 
         {
             return;
@@ -232,4 +230,7 @@ public abstract class Animal extends Actor {
     {
         return hasLanded;
     }
+    
+    protected abstract Animal createMergedAnimal();
+    protected abstract void animate();
 }

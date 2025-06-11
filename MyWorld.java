@@ -62,17 +62,26 @@ public class MyWorld extends World {
     }
 
     // Creates a random animal
-    public void createAnimal() {
-        if (fallingAnimal == null && readyToSpawn) {
+    public void createAnimal() 
+    {
+        if (fallingAnimal == null && readyToSpawn) 
+        {
             Animal animal;
             int type = rand.nextInt(4); // 0=Rabbit, 1=Chicken, 2=Cat, 3=Dog
-            if (type == 0) {
+            if (type == 0)
+            {
                 animal = new Rabbit();
-            } else if (type == 1) {
+            } 
+            else if (type == 1) 
+            {
                 animal = new Chicken();
-            } else if (type == 2){
+            } 
+            else if (type == 2)
+            {
                 animal = new Cat();
-            } else {
+            }
+            else 
+            {
                 animal = new Dog();
             }
     
@@ -87,11 +96,14 @@ public class MyWorld extends World {
         }
     }
     
-    public void clearFallingAnimal() {
+    
+    public void clearFallingAnimal() 
+    {
         fallingAnimal = null;
-        }
+    }
 
-    public Animal getFallingAnimal() {
+    public Animal getFallingAnimal() 
+    {
         return fallingAnimal;
     }
 

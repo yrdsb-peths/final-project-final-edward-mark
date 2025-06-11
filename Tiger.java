@@ -43,8 +43,7 @@ public class Tiger extends Animal
         }
     }
     
-    // Final animal - does not merge
-    @Override
+    // Final animal - does not merge into any more animals
     protected Animal createMergedAnimal()
     {
         return null;

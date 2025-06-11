@@ -29,7 +29,7 @@ public class Rabbit extends Animal {
         animationTimer.mark();
     }
 
-    @Override
+
     protected void animate() {
         // Change frame every 150 milliseconds
         if (animationTimer.millisElapsed() > 150) {
@@ -45,7 +45,7 @@ public class Rabbit extends Animal {
     }
 
     // Merges and creates chicken
-    @Override
+
     protected Animal createMergedAnimal() {
         return new Chicken();
     }

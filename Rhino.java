@@ -43,7 +43,7 @@ public class Rhino extends Animal
     }
     
     // Merges and creates tiger
-    @Override
+
     protected Animal createMergedAnimal()
     {
         return new Tiger();

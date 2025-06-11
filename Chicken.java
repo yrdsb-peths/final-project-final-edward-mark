@@ -45,7 +45,7 @@ public class Chicken extends Animal
     }
     
     // Merges and creates cat
-    @Override
+
     protected Animal createMergedAnimal()
     {
         return new Cat();

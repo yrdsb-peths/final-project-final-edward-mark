@@ -36,7 +36,7 @@ public class Dog extends Animal {
     }
  
     // Merges and creates pig
-    @Override
+ 
     protected Animal createMergedAnimal()
     {
         return new Pig();

@@ -30,7 +30,7 @@ public class Cat extends Animal {
     }
 
     // Controls animation speed
-    @Override
+
     protected void animate() {
         // Change frame every 150 milliseconds
         if (animationTimer.millisElapsed() > 150) {
@@ -46,7 +46,7 @@ public class Cat extends Animal {
     }
 
     // Merges and creates dog
-    @Override
+
     protected Animal createMergedAnimal() {
         return new Dog();
     }
